@@ -22,6 +22,7 @@ const ProductScreen = ({ history, match }) => {
   const { loading, error, product } = productDetails;
   useEffect(() => {
     dispatch(listProductDetails(match.params.id));
+    // eslint-disable-next-line
   }, [dispatch]);
   const addToCartHandler = () => {
     history.push(`/cart/${match.params.id}?qty=${qty}`);

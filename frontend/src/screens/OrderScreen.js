@@ -27,7 +27,6 @@ const OrderScreen = ({ match }) => {
   }
   const orderId = match.params.id;
   const successPaymentHandler = (paymentResult) => {
-    console.log(paymentResult);
     dispatch(payOrder(orderId, paymentResult));
   };
   useEffect(() => {
