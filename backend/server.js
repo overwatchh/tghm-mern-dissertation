@@ -9,8 +9,9 @@ import path from "path";
 
 import { notFound, errorHandler } from "./middleware/errorMiddleWare.js";
 const app = express();
-app.use(express.json());
 dotenv.config();
+app.use(express.json());
+
 connectDB();
 
 app.get("/", (req, res) => {
