@@ -29,13 +29,13 @@ const ShippingScreen = ({ history }) => {
   return (
     <FormContainer>
       <CheckoutSteps step1 step2 />
-      <h1>Shipping</h1>
+      <h1>Thông tin giao hàng</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="address">
-          <Form.Label>Address</Form.Label>
+          <Form.Label>Địa chỉ</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter address"
+            placeholder="Nhập địa chỉ"
             value={address}
             required
             onChange={(e) => setAddress(e.target.value)}
@@ -43,7 +43,7 @@ const ShippingScreen = ({ history }) => {
         </Form.Group>
 
         <Form.Group controlId="city">
-          <Form.Label>City</Form.Label>
+          <Form.Label>Thành phố</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter city"
@@ -54,7 +54,7 @@ const ShippingScreen = ({ history }) => {
         </Form.Group>
 
         <Form.Group controlId="postalCode">
-          <Form.Label>PostalCode</Form.Label>
+          <Form.Label>Mã bưu điện</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter postal code"
@@ -65,7 +65,7 @@ const ShippingScreen = ({ history }) => {
         </Form.Group>
 
         <Form.Group controlId="country">
-          <Form.Label>Country</Form.Label>
+          <Form.Label>Quốc Gia</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter country"
@@ -76,7 +76,7 @@ const ShippingScreen = ({ history }) => {
         </Form.Group>
 
         <Button type="submit" variant="primary">
-          Continue
+          Tiếp tục
         </Button>
       </Form>
     </FormContainer>

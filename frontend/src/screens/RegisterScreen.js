@@ -9,7 +9,7 @@ import { register } from "../actions/userActions";
 
 const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -29,40 +29,40 @@ const RegisterScreen = ({ location, history }) => {
     if (password !== confirmPassword) {
       setMessage("Passwords do not match");
     } else {
-      dispatch(register(name, email, password));
+      dispatch(register(name, userName, password));
     }
   };
   return (
     <FormContainer>
-      <h1>Sign Up</h1>
+      <h1>Đăng kí</h1>
       {message && <Message variant="danger">{message}</Message>}
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="name">
-          <Form.Label>Name</Form.Label>
+          <Form.Label>Tên</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter email"
+            placeholder="Nguyễn Văn A"
             value={name}
             onChange={(e) => setName(e.target.value)}
           ></Form.Control>
         </Form.Group>
-        <Form.Group controlId="email">
-          <Form.Label>Email Address</Form.Label>
+        <Form.Group controlId="username">
+          <Form.Label>Tên đăng nhập</Form.Label>
           <Form.Control
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            placeholder="09xxxxxxxx"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
         <Form.Group controlId="password">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Mật khẩu</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Enter password"
+            placeholder="Nhập mật khẩu"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
@@ -71,20 +71,20 @@ const RegisterScreen = ({ location, history }) => {
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Confirm password"
+            placeholder="Nhập lại mật khẩu"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
         <Button type="submit" variant="primary">
-          Register
+          Đăng kí
         </Button>
       </Form>
       <Row className="py-3">
         <Col>
-          Have an Account?{" "}
+          Đã có tài khoản?{" "}
           <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
-            Login{" "}
+            Đăng nhập{" "}
           </Link>
         </Col>
       </Row>

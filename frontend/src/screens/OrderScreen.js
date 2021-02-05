@@ -85,23 +85,17 @@ const OrderScreen = ({ match, history }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          <h1>Order {order._id}</h1>
+          <h1>Hóa đơn {order._id}</h1>
           <Row>
             <Col md={8}>
               <ListGroup variant="flush">
                 <ListGroup.Item>
-                  <h2>Shipping</h2>
+                  <h2>Thông tin khách hàng</h2>
                   <p>
-                    <strong>Name:</strong> {order.user.name}
+                    <strong>Tên: </strong> {order.user.name}
                   </p>
                   <p>
-                    <strong>Email:</strong>
-                    <a href={`mailto:${order.user.email}`}>
-                      {order.user.email}
-                    </a>
-                  </p>
-                  <p>
-                    <strong>Address:</strong>
+                    <strong>Địa chỉ: </strong>
                     {order.shippingAddress.address} ,
                     {order.shippingAddress.city} ,
                     {order.shippingAddress.postalCode} ,
@@ -109,28 +103,30 @@ const OrderScreen = ({ match, history }) => {
                   </p>
                   {order.isDelivered ? (
                     <Message variant="success">
-                      Delivered on {order.deliveredAt}
+                      Ngày giao hàng {order.deliveredAt}
                     </Message>
                   ) : (
-                    <Message variant="danger">Not delivered</Message>
+                    <Message variant="danger">Chưa giao hàng</Message>
                   )}
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <h2>Payment Method</h2>
+                  <h2>Thanh toán</h2>
                   <p>
-                    <strong>Method:</strong>
+                    <strong>Phương pháp: </strong>
                     {order.paymentMethod}
                   </p>
                   {order.isPaid ? (
-                    <Message variant="success">Paid on {order.paidAt}</Message>
+                    <Message variant="success">
+                      Ngày thanh toán {order.paidAt}
+                    </Message>
                   ) : (
-                    <Message variant="danger">Not paid</Message>
+                    <Message variant="danger">Chưa thanh toán</Message>
                   )}
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <h2>Order Items</h2>
+                  <h2>Chi tiết đơn hàng</h2>
                   {order.orderItems.length === 0 ? (
-                    <Message>Order is empty</Message>
+                    <Message>Đơn hàng trống</Message>
                   ) : (
                     <ListGroup variant="flush">
                       {order.orderItems.map((item, index) => (
@@ -138,7 +134,7 @@ const OrderScreen = ({ match, history }) => {
                           <Row>
                             <Col md={1}>
                               <Image
-                                src={item.image}
+                                src={`/${item.image}`}
                                 alt={item.name}
                                 fluid
                                 rounded
@@ -150,7 +146,7 @@ const OrderScreen = ({ match, history }) => {
                               </Link>
                             </Col>
                             <Col md={4}>
-                              {item.qty} x ${item.price} = $
+                              {item.qty} x {item.price} ={" "}
                               {item.qty * item.price}
                             </Col>
                           </Row>
@@ -165,32 +161,32 @@ const OrderScreen = ({ match, history }) => {
               <Card>
                 <ListGroup variant="flush">
                   <ListGroup.Item>
-                    <h2>Order Summary</h2>
+                    <h2>Thành tiền</h2>
                   </ListGroup.Item>
 
                   <ListGroup.Item>
                     <Row>
-                      <Col>Items</Col>
-                      <Col>${order.itemsPrice}</Col>
+                      <Col>Sản phẩm</Col>
+                      <Col>{order.itemsPrice} VNĐ</Col>
                     </Row>
                   </ListGroup.Item>
 
                   <ListGroup.Item>
                     <Row>
-                      <Col>Shipping</Col>
-                      <Col>${order.shippingPrice}</Col>
+                      <Col>Phí giao hàng</Col>
+                      <Col>{order.shippingPrice} VNĐ</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
-                      <Col>Tax</Col>
-                      <Col>${order.taxPrice}</Col>
+                      <Col>Thuế</Col>
+                      <Col>{order.taxPrice} VNĐ</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
-                      <Col>Total</Col>
-                      <Col>${order.totalPrice}</Col>
+                      <Col>Tổng tiền</Col>
+                      <Col>{order.totalPrice} VNĐ</Col>
                     </Row>
                   </ListGroup.Item>
                   {!order.isPaid && (
@@ -217,7 +213,7 @@ const OrderScreen = ({ match, history }) => {
                           className="btn btn-block"
                           onClick={deliverHandler}
                         >
-                          Mark As Delivered
+                          Xác nhận đã giao
                         </Button>
                       </ListGroup.Item>
                     )}

@@ -9,7 +9,7 @@ import { listMyOrders } from "../actions/orderActions";
 import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
 const ProfileScreen = ({ history }) => {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -38,7 +38,7 @@ const ProfileScreen = ({ history }) => {
         dispatch(listMyOrders());
       } else {
         setName(user.name);
-        setEmail(user.email);
+        setUserName(user.userName);
       }
     }
   }, [history, userInfo, dispatch, user, success]);
@@ -53,7 +53,7 @@ const ProfileScreen = ({ history }) => {
         updateUserProfile({
           id: user._id,
           name,
-          email,
+          userName,
           password,
         })
       );
@@ -62,56 +62,56 @@ const ProfileScreen = ({ history }) => {
   return (
     <Row>
       <Col md={3}>
-        <h1>User Profile</h1>
+        <h1>Hồ sơ</h1>
         {message && <Message variant="danger">{message}</Message>}
         {error && <Message variant="danger">{error}</Message>}
-        {success && <Message variant="success">Profile Updated</Message>}
+        {success && <Message variant="success">Đã lưu</Message>}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
-            <Form.Label>Name</Form.Label>
+            <Form.Label>Tên</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter email"
+              placeholder="Nguyyễn Văn A"
               value={name}
               onChange={(e) => setName(e.target.value)}
             ></Form.Control>
           </Form.Group>
-          <Form.Group controlId="email">
-            <Form.Label>Email Address</Form.Label>
+          <Form.Group controlId="username">
+            <Form.Label>Tên đăng nhập</Form.Label>
             <Form.Control
-              type="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              placeholder="nguyenvana"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
           <Form.Group controlId="password">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>Mật khẩu</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Enter password"
+              placeholder="Nhập mật khẩu"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
           <Form.Group controlId="confirmPassword">
-            <Form.Label>Confirm Password</Form.Label>
+            <Form.Label>Xác nhận mật khẩu</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Confirm password"
+              placeholder="Nhập lại mật khẩu"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
           <Button type="submit" variant="primary">
-            Update
+            Cập nhật
           </Button>
         </Form>
       </Col>
       <Col md={9}>
-        <h2>My Orders</h2>
+        <h2>Hoá đơn của tôi</h2>
         {loadingOrders ? (
           <Loader />
         ) : errorOrders ? (
@@ -120,18 +120,24 @@ const ProfileScreen = ({ history }) => {
           <Table striped bordered hover responsive className="table-sm">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>DATE</th>
-                <th>TOTAL</th>
-                <th>PAID</th>
-                <th>DELIVERED</th>
+                <th>Mã hóa đơn</th>
+                <th>Ngày tạo</th>
+                <th>Tổng</th>
+                <th>Thanh toán</th>
+                <th>Giao hàng</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               {orders.map((order) => (
                 <tr>
-                  <td>{order._id}</td>
+                  <td>
+                    {order._id.substring(0, 3)}...
+                    {order._id.substring(
+                      order._id.length - 3,
+                      order._id.length
+                    )}
+                  </td>
                   <td>{order.createdAt.substring(0, 10)}</td>
                   <td>{order.totalPrice}</td>
                   <td>
@@ -152,7 +158,7 @@ const ProfileScreen = ({ history }) => {
                   <td>
                     <LinkContainer to={`/order/${order._id}`}>
                       <Button className="btn-sm" variant="dark">
-                        Details
+                        Chi tiết
                       </Button>
                     </LinkContainer>
                   </td>

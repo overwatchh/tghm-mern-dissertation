@@ -22,15 +22,15 @@ const HomeScreen = ({ match }) => {
   //const products = [];
   return (
     <>
-      <Meta />
+      <Meta title="Thế giới hàng mã" />
       {!keyword ? (
         <ProductCarousel />
       ) : (
         <Link to="/" className="btn btn-light">
-          Go Back
+          Quay lại
         </Link>
       )}
-      <h1>Latest Products</h1>
+      <h1>Sản phẩm </h1>
       {loading ? (
         <Loader />
       ) : error ? (

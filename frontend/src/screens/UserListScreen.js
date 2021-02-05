@@ -18,7 +18,7 @@ const UserListScreen = ({ history }) => {
   const { success: successDelete } = userDelete;
 
   const deleteHandler = (userId) => {
-    if (window.confirm("Are you sure?")) {
+    if (window.confirm("Chắc chắn muốn xóa?")) {
       dispatch(deleteUser(userId));
     }
   };
@@ -32,7 +32,7 @@ const UserListScreen = ({ history }) => {
   }, [dispatch, history, successDelete, userInfo]);
   return (
     <>
-      <h1>Users</h1>
+      <h1>Tất cả người dùng</h1>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -41,17 +41,20 @@ const UserListScreen = ({ history }) => {
         <Table striped bordered hover responsive className="table-sm">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>NAME</th>
+              <th>Mã số</th>
+              <th>Tên</th>
               <th>EMAIL</th>
-              <th>ADMIN</th>
+              <th>Quản trị</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             {users.map((user) => (
               <tr key={user._id}>
-                <td>{user._id}</td>
+                <td>
+                  {user._id.substring(0, 3)}...
+                  {user._id.substring(user._id.length - 3, user._id.length)}
+                </td>
                 <td>{user.name}</td>
                 <td>
                   <a href={`mailto:${user.email}`}>{user.email}</a>

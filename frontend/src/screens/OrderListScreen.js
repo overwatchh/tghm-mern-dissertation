@@ -24,7 +24,7 @@ const OrderListScreen = ({ history }) => {
   }, [dispatch, history, userInfo]);
   return (
     <>
-      <h1>Orders</h1>
+      <h1>Đơn hàng</h1>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -34,11 +34,11 @@ const OrderListScreen = ({ history }) => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>USER</th>
-              <th>DATE</th>
-              <th>TOTAL</th>
-              <th>PAID</th>
-              <th>DELIVERED</th>
+              <th>Tên</th>
+              <th>Ngày Tạo</th>
+              <th>Tổng</th>
+              <th>Thanh toán</th>
+              <th>Giao hàng</th>
               <th></th>
             </tr>
           </thead>
@@ -66,7 +66,7 @@ const OrderListScreen = ({ history }) => {
                 <td>
                   <LinkContainer to={`/order/${order._id}`}>
                     <Button variant="dark" className="btn-sm">
-                      Details
+                      Chi tiết
                     </Button>
                   </LinkContainer>
                 </td>
