@@ -3,11 +3,13 @@ import SearchBox from "./SearchBox";
 import { Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
-import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Container, Navbar, Nav, NavDropdown, Badge } from "react-bootstrap";
 import { logout } from "../actions/userActions";
 const Header = () => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
   const { userInfo } = userLogin;
   const logoutHandler = () => {
     dispatch(logout());
@@ -21,11 +23,18 @@ const Header = () => {
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Route render={({ history }) => <SearchBox history={history} />} />
+            <Route
+              render={({ history }) => (
+                <SearchBox className="d-none d-lg-block" history={history} />
+              )}
+            />
             <Nav className="ml-auto">
               <LinkContainer to="/cart">
                 <Nav.Link>
-                  <i className="fas fa-shopping-cart"></i> Giỏ hàng
+                  <i className="fas fa-shopping-cart"></i> Giỏ hàng{" "}
+                  <Badge pill variant="danger">
+                    {cartItems.length}
+                  </Badge>
                 </Nav.Link>
               </LinkContainer>
               {userInfo ? (

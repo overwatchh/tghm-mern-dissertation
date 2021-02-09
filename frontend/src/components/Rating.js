@@ -15,7 +15,6 @@ const Rating = ({ value, text, color }) => {
           }
         ></i>
       </span>
-
       <span>
         <i
           style={{ color }}
@@ -28,7 +27,6 @@ const Rating = ({ value, text, color }) => {
           }
         ></i>
       </span>
-
       <span>
         <i
           style={{ color }}
@@ -41,7 +39,6 @@ const Rating = ({ value, text, color }) => {
           }
         ></i>
       </span>
-
       <span>
         <i
           style={{ color }}
@@ -54,7 +51,6 @@ const Rating = ({ value, text, color }) => {
           }
         ></i>
       </span>
-
       <span>
         <i
           style={{ color }}
@@ -67,7 +63,10 @@ const Rating = ({ value, text, color }) => {
           }
         ></i>
       </span>
-      <span>{text && text}</span>
+      <span>
+        <i className="fad fa-comments"></i>
+        {text && text}
+      </span>
     </div>
   );
 };

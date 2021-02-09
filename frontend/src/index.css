@@ -44,3 +44,16 @@ h2 {
   height: 175px;
   object-fit: contain;
 }
+/*not allow cursor*/
+.not-allow:hover {
+  cursor: not-allowed !important;
+}
+/*sticky header*/
+header {
+  position: sticky;
+  top: 0px;
+  z-index: 16;
+}
+main {
+  z-index: 0;
+}

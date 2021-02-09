@@ -6,10 +6,11 @@ import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
+import SearchBox from "../components/SearchBox";
 import { Paginate } from "../components/Paginate";
 import { listProducts } from "../actions/productActions";
 import ProductCarousel from "../components/ProductCarousel";
-const HomeScreen = ({ match }) => {
+const HomeScreen = ({ match, history }) => {
   const keyword = match.params.keyword;
   const pageNumber = match.params.pageNumber || 1;
 
@@ -31,6 +32,7 @@ const HomeScreen = ({ match }) => {
         </Link>
       )}
       <h1>Sản phẩm </h1>
+      <SearchBox className="d-lg-none" history={history} />
       {loading ? (
         <Loader />
       ) : error ? (
