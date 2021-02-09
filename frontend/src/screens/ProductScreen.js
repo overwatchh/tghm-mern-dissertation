@@ -39,7 +39,7 @@ const ProductScreen = ({ history, match }) => {
   } = productReviewCreate;
   useEffect(() => {
     if (successProductReview) {
-      alert("Review Submitted");
+      alert("Đánh giá của bạn đã được lưu");
       setRating(0);
       setComment("");
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
@@ -106,7 +106,7 @@ const ProductScreen = ({ history, match }) => {
                   </ListGroup.Item>
                   {product.countInStock > 0 && (
                     <ListGroup.Item>
-                      <Row>
+                      <Row className="d-flex align-items-center">
                         <Col>Số lượng</Col>
                         <Col>
                           <Form.Control

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
-const SearchBox = ({ history }) => {
+const SearchBox = ({ history, className }) => {
   const [keyword, setKeyword] = useState("");
 
   const submitHandler = (e) => {
@@ -13,15 +13,19 @@ const SearchBox = ({ history }) => {
     }
   };
   return (
-    <Form onSubmit={submitHandler} inline>
+    <Form onSubmit={submitHandler} inline className={className}>
       <Form.Control
         type="text"
         name="q"
         onChange={(e) => setKeyword(e.target.value)}
-        className="mr-sm-2 ml-sm-5"
+        className="mr-sm-2 ml-sm-5 mt-2"
         placeholder="Tên sản phẩm..."
       ></Form.Control>
-      <Button type="submit" variant="outline-success" className="p-2">
+      <Button
+        type="submit"
+        variant="outline-success"
+        className="p-2 mt-2 ml-auto"
+      >
         Tìm kiếm
       </Button>
     </Form>

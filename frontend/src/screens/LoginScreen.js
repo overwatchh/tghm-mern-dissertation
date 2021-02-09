@@ -34,7 +34,7 @@ const LoginScreen = ({ location, history }) => {
           <Form.Label>Tên đăng nhập</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Số điện thoại / Email"
+            placeholder="Số điện thoại / biệt danh"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
           ></Form.Control>

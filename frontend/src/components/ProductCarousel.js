@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import CurrencyFormat from "react-currency-format";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Carousel, Image } from "react-bootstrap";
@@ -18,13 +19,23 @@ const ProductCarousel = () => {
   ) : error ? (
     <Message variant="danger">{error}</Message>
   ) : (
-    <Carousel pause="hover" interval={null} className="bg-dark">
+    <Carousel
+      pause="hover"
+      interval={null}
+      className="bg-dark d-none d-lg-block"
+    >
       {products.map((product) => (
         <Carousel.Item key={product._id}>
           <Link to={`/product/${product._id}`}>
             <Carousel.Caption className="carousel-caption">
               <h2>
-                {product.name} ({product.price})
+                {product.name} (
+                <CurrencyFormat
+                  displayType="text"
+                  value={product.price}
+                  thousandSeparator={true}
+                />
+                )
               </h2>
             </Carousel.Caption>
             <Image src={product.image} alt={product.name} />

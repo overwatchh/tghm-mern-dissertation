@@ -85,7 +85,7 @@ const OrderScreen = ({ match, history }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          <h1>Hóa đơn {order._id}</h1>
+          <h1 className="overflow-scroll">Hóa đơn {order._id}</h1>
           <Row>
             <Col md={8}>
               <ListGroup variant="flush">

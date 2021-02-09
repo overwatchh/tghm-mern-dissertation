@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import CurrencyFormat from "react-currency-format";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -20,7 +21,10 @@ const CartScreen = ({ match, location, history }) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-
+  const cartTotalPrice = cartItems.reduce(
+    (acc, item) => acc + item.qty * item.price,
+    0
+  );
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty));
@@ -36,6 +40,9 @@ const CartScreen = ({ match, location, history }) => {
   return (
     <Row>
       <Col md={8}>
+        <Link className="btn btn-light my-3" to="/">
+          Quay lại
+        </Link>
         <h1>Giỏ hàng</h1>
         {cartItems.length === 0 ? (
           <Message>
@@ -60,23 +67,23 @@ const CartScreen = ({ match, location, history }) => {
                   <Col md={3}>
                     <Link to={`/product/item/`}>{item.name}</Link>
                   </Col>
-                  <Col md={2}>${item.price}</Col>
+                  <Col md={2}>
+                    <CurrencyFormat
+                      value={item.price}
+                      displayType="text"
+                      thousandSeparator={true}
+                    />
+                  </Col>
                   <Col md={2}>
                     <Form.Control
-                      as="select"
+                      type="number"
                       value={item.qty}
                       onChange={(e) =>
                         dispatch(
                           addToCart(item.product, Number(e.target.value))
                         )
                       }
-                    >
-                      {[...Array(item.countInStock).keys()].map((x) => (
-                        <option key={x + 1} value={x + 1}>
-                          {x + 1}
-                        </option>
-                      ))}
-                    </Form.Control>
+                    ></Form.Control>
                   </Col>
                   <Col md={2}>
                     <Button
@@ -100,12 +107,17 @@ const CartScreen = ({ match, location, history }) => {
           <ListGroup variant="flush">
             <ListGroup.Item>
               <h2>Tổng tiền</h2>
-              <p className="text-center">
-                {cartItems
-                  .reduce((acc, item) => acc + item.qty * item.price, 0)
-                  .toFixed(2)}{" "}
-                VNĐ
-              </p>
+
+              <CurrencyFormat
+                value={cartTotalPrice}
+                displayType="text"
+                thousandSeparator={true}
+                renderText={(value) => (
+                  <h1 className="text-center text-danger font-weight-bold">
+                    {value}
+                  </h1>
+                )}
+              />
             </ListGroup.Item>
             <ListGroup.Item>
               <Button
