@@ -68,7 +68,7 @@ const RegisterScreen = ({ location, history }) => {
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId="confirmPassword">
-          <Form.Label>Confirm Password</Form.Label>
+          <Form.Label>Xác nhận mật khẩu</Form.Label>
           <Form.Control
             type="password"
             placeholder="Nhập lại mật khẩu"

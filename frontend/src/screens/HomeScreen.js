@@ -6,11 +6,10 @@ import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import SearchBox from "../components/SearchBox";
 import { Paginate } from "../components/Paginate";
 import { listProducts } from "../actions/productActions";
 import ProductCarousel from "../components/ProductCarousel";
-const HomeScreen = ({ match, history }) => {
+const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword;
   const pageNumber = match.params.pageNumber || 1;
 
@@ -20,10 +19,10 @@ const HomeScreen = ({ match, history }) => {
   useEffect(() => {
     dispatch(listProducts(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
-  //const products = [];
+
   return (
     <>
-      <Meta title="Thế giới hàng mã" />
+      <Meta title="Acazia Review" />
       {!keyword ? (
         <ProductCarousel />
       ) : (
@@ -32,7 +31,6 @@ const HomeScreen = ({ match, history }) => {
         </Link>
       )}
       <h1>Sản phẩm </h1>
-      <SearchBox className="d-lg-none" history={history} />
       {loading ? (
         <Loader />
       ) : error ? (

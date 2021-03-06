@@ -37,14 +37,14 @@ const PaymentScreen = ({ history }) => {
               label="Paypal"
               id="PayPal"
             ></Form.Check>
-            {/* <Form.Check
+            <Form.Check
               name="paymentMethod"
-              value="Stripe"
+              value="Thanh toán bằng tiền mặt"
               onChange={(e) => setPaymentMethod(e.target.value)}
               type="radio"
-              label="Stripe"
+              label="Thanh toán bằng tiền mặt"
               id="Stripe"
-            ></Form.Check> */}
+            ></Form.Check>
           </Col>
         </Form.Group>
 

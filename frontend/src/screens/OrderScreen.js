@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { PayPalButton } from "react-paypal-button-v2";
+import React, { useEffect } from "react";
 import { Card, Row, Col, ListGroup, Image, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import CurrencyFormat from "react-currency-format";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import {
@@ -16,8 +15,6 @@ import {
   ORDER_DELIVER_RESET,
 } from "../constants/orderConstants";
 const OrderScreen = ({ match, history }) => {
-  const [sdkReady, setSdkReady] = useState(false);
-
   const dispatch = useDispatch();
   const orderDetails = useSelector((state) => state.orderDetails);
   const { loading, order, error } = orderDetails;
@@ -40,8 +37,8 @@ const OrderScreen = ({ match, history }) => {
     );
   }
   const orderId = match.params.id;
-  const successPaymentHandler = (paymentResult) => {
-    dispatch(payOrder(orderId, paymentResult));
+  const successPaymentHandler = () => {
+    dispatch(payOrder(orderId));
   };
   const deliverHandler = () => {
     dispatch(deliverOrder(order));
@@ -49,43 +46,29 @@ const OrderScreen = ({ match, history }) => {
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");
+    } else {
+      dispatch(getOrderDetails(orderId));
     }
-    const addPayPalScript = async () => {
-      const { data: clientId } = await axios.get("/api/config/paypal");
-      const script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
-      script.async = true;
-      script.onload = () => {
-        setSdkReady(true);
-      };
-      document.body.append(script);
-    };
 
-    if (!order || successPay || successDeliver) {
+    if (successPay || successDeliver) {
       dispatch({ type: ORDER_PAY_RESET });
       dispatch({ type: ORDER_DELIVER_RESET });
-      dispatch(getOrderDetails(orderId));
-    } else if (!order.isPaid) {
-      if (!window.paypal) {
-        addPayPalScript();
-      } else {
-        setSdkReady(true);
-      }
     }
-
     // eslint-disable-next-line
-  }, [dispatch, orderId, order, successPay, successDeliver]);
+  }, [dispatch, successPay, successDeliver]);
 
   return (
     <>
+      <Link to="/admin/orderlist" className="btn btn-light">
+        Quay lại
+      </Link>
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          <h1 className="overflow-scroll">Hóa đơn {order._id}</h1>
+          <h1>Chi tiết hóa đơn</h1>
           <Row>
             <Col md={8}>
               <ListGroup variant="flush">
@@ -146,8 +129,17 @@ const OrderScreen = ({ match, history }) => {
                               </Link>
                             </Col>
                             <Col md={4}>
-                              {item.qty} x {item.price} ={" "}
-                              {item.qty * item.price}
+                              <CurrencyFormat
+                                value={item.price}
+                                displayType="text"
+                                thousandSeparator={true}
+                              />{" "}
+                              x {item.qty} ={" "}
+                              <CurrencyFormat
+                                value={item.qty * item.price}
+                                displayType="text"
+                                thousandSeparator={true}
+                              />
                             </Col>
                           </Row>
                         </ListGroup.Item>
@@ -189,34 +181,44 @@ const OrderScreen = ({ match, history }) => {
                       <Col>{order.totalPrice} VNĐ</Col>
                     </Row>
                   </ListGroup.Item>
-                  {!order.isPaid && (
+                  {loadingPay && <Loader />}
+                  {userInfo && userInfo.isAdmin && (
                     <ListGroup.Item>
-                      {loadingPay && <Loader />}
-                      {!sdkReady ? (
-                        <Loader />
-                      ) : (
-                        <PayPalButton
-                          amount={order.totalPrice}
-                          onSuccess={successPaymentHandler}
-                        />
-                      )}
+                      <Button
+                        type="button"
+                        className={`btn btn-block ${
+                          order.isPaid ? "btn-success" : "btn-danger"
+                        }`}
+                        onClick={successPaymentHandler}
+                      >
+                        Thanh toán{" "}
+                        {order.isPaid ? (
+                          <i class="fas fa-check-circle"></i>
+                        ) : (
+                          <i class="far fa-times-circle"></i>
+                        )}
+                      </Button>
                     </ListGroup.Item>
                   )}
                   {loadingDeliver && <Loader />}
-                  {userInfo &&
-                    userInfo.isAdmin &&
-                    order.isPaid &&
-                    !order.isDelivered && (
-                      <ListGroup.Item>
-                        <Button
-                          type="button"
-                          className="btn btn-block"
-                          onClick={deliverHandler}
-                        >
-                          Xác nhận đã giao
-                        </Button>
-                      </ListGroup.Item>
-                    )}
+                  {userInfo && userInfo.isAdmin && (
+                    <ListGroup.Item>
+                      <Button
+                        type="button"
+                        className={`btn btn-block ${
+                          order.isDelivered ? "btn-success" : "btn-danger"
+                        }`}
+                        onClick={deliverHandler}
+                      >
+                        Giao hàng{" "}
+                        {order.isDelivered ? (
+                          <i class="fas fa-check-circle"></i>
+                        ) : (
+                          <i class="far fa-times-circle"></i>
+                        )}
+                      </Button>
+                    </ListGroup.Item>
+                  )}
                 </ListGroup>
               </Card>
             </Col>

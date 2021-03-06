@@ -120,7 +120,7 @@ const ProfileScreen = ({ history }) => {
           <Table striped bordered hover responsive className="table-sm">
             <thead>
               <tr>
-                <th>Mã hóa đơn</th>
+                <th>STT</th>
                 <th>Ngày tạo</th>
                 <th>Tổng</th>
                 <th>Thanh toán</th>
@@ -129,15 +129,9 @@ const ProfileScreen = ({ history }) => {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order) => (
+              {orders.map((order, index) => (
                 <tr>
-                  <td>
-                    {order._id.substring(0, 3)}...
-                    {order._id.substring(
-                      order._id.length - 3,
-                      order._id.length
-                    )}
-                  </td>
+                  <td>{index + 1}</td>
                   <td>{order.createdAt.substring(0, 10)}</td>
                   <td>{order.totalPrice}</td>
                   <td>

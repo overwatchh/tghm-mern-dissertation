@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import CurrencyFormat from "react-currency-format";
 import { Button, Card, Row, Col, ListGroup, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -83,7 +84,18 @@ const PlaceOrderScreen = ({ history }) => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
+                          {item.qty} x{" "}
+                          <CurrencyFormat
+                            displayType="text"
+                            value={item.price}
+                            thousandSeparator={true}
+                          />
+                          =
+                          <CurrencyFormat
+                            displayType="text"
+                            value={item.qty * item.price}
+                            thousandSeparator={true}
+                          />
                         </Col>
                       </Row>
                     </ListGroup.Item>
