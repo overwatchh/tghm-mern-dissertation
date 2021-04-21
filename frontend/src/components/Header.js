@@ -27,7 +27,7 @@ const Header = () => {
             <Nav className="ml-auto">
               <LinkContainer to="/cart">
                 <Nav.Link>
-                  <i className="fas fa-shopping-cart"></i> Giỏ hàng{" "}
+                  <i className="fas fa-shopping-cart"></i> Cart{" "}
                   <Badge pill variant="danger">
                     {cartItems.length}
                   </Badge>
@@ -36,29 +36,29 @@ const Header = () => {
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id="username">
                   <LinkContainer to="/profile">
-                    <NavDropdown.Item>Đơn hàng của tôi</NavDropdown.Item>
+                    <NavDropdown.Item>My orders</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>
-                    Đăng xuất
+                    Log Out
                   </NavDropdown.Item>
                 </NavDropdown>
               ) : (
                 <LinkContainer to="/login">
                   <Nav.Link>
-                    <i className="fas fa-user"></i> Đăng nhập
+                    <i className="fas fa-user"></i> Log In
                   </Nav.Link>
                 </LinkContainer>
               )}
               {userInfo && userInfo.isAdmin && (
-                <NavDropdown title="Quản trị" id="adminMenu">
+                <NavDropdown title="Management" id="adminMenu">
                   <LinkContainer to="/admin/userlist">
-                    <NavDropdown.Item>Người dùng</NavDropdown.Item>
+                    <NavDropdown.Item>Users</NavDropdown.Item>
                   </LinkContainer>
                   <LinkContainer to="/admin/productlist">
-                    <NavDropdown.Item>Sản phẩm</NavDropdown.Item>
+                    <NavDropdown.Item>Products</NavDropdown.Item>
                   </LinkContainer>
                   <LinkContainer to="/admin/orderlist">
-                    <NavDropdown.Item>Đơn hàng</NavDropdown.Item>
+                    <NavDropdown.Item>Invoices</NavDropdown.Item>
                   </LinkContainer>
                 </NavDropdown>
               )}

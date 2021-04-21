@@ -60,7 +60,7 @@ const OrderScreen = ({ match, history }) => {
   return (
     <>
       <Link to="/admin/orderlist" className="btn btn-light">
-        Quay lại
+        Go back
       </Link>
       {loading ? (
         <Loader />
@@ -68,17 +68,17 @@ const OrderScreen = ({ match, history }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          <h1>Chi tiết hóa đơn</h1>
+          <h1>Invoice details</h1>
           <Row>
             <Col md={8}>
               <ListGroup variant="flush">
                 <ListGroup.Item>
-                  <h2>Thông tin khách hàng</h2>
+                  <h2>Customer's info</h2>
                   <p>
-                    <strong>Tên: </strong> {order.user.name}
+                    <strong>Customer's name: </strong> {order.user.name}
                   </p>
                   <p>
-                    <strong>Địa chỉ: </strong>
+                    <strong>Address: </strong>
                     {order.shippingAddress.address} ,
                     {order.shippingAddress.city} ,
                     {order.shippingAddress.postalCode} ,
@@ -86,30 +86,28 @@ const OrderScreen = ({ match, history }) => {
                   </p>
                   {order.isDelivered ? (
                     <Message variant="success">
-                      Ngày giao hàng {order.deliveredAt}
+                      Delivered at {order.deliveredAt}
                     </Message>
                   ) : (
                     <Message variant="danger">Chưa giao hàng</Message>
                   )}
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <h2>Thanh toán</h2>
+                  <h2>Payment</h2>
                   <p>
-                    <strong>Phương pháp: </strong>
+                    <strong>Method: </strong>
                     {order.paymentMethod}
                   </p>
                   {order.isPaid ? (
-                    <Message variant="success">
-                      Ngày thanh toán {order.paidAt}
-                    </Message>
+                    <Message variant="success">Paid at {order.paidAt}</Message>
                   ) : (
-                    <Message variant="danger">Chưa thanh toán</Message>
+                    <Message variant="danger">Not paid</Message>
                   )}
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <h2>Chi tiết đơn hàng</h2>
+                  <h2>Details</h2>
                   {order.orderItems.length === 0 ? (
-                    <Message>Đơn hàng trống</Message>
+                    <Message>Empty invoice</Message>
                   ) : (
                     <ListGroup variant="flush">
                       {order.orderItems.map((item, index) => (
@@ -153,32 +151,32 @@ const OrderScreen = ({ match, history }) => {
               <Card>
                 <ListGroup variant="flush">
                   <ListGroup.Item>
-                    <h2>Thành tiền</h2>
+                    <h2>Subtotal total</h2>
                   </ListGroup.Item>
 
                   <ListGroup.Item>
                     <Row>
-                      <Col>Sản phẩm</Col>
-                      <Col>{order.itemsPrice} VNĐ</Col>
+                      <Col>Products</Col>
+                      <Col>{order.itemsPrice} USD</Col>
                     </Row>
                   </ListGroup.Item>
 
                   <ListGroup.Item>
                     <Row>
-                      <Col>Phí giao hàng</Col>
-                      <Col>{order.shippingPrice} VNĐ</Col>
+                      <Col>Shipping fee</Col>
+                      <Col>{order.shippingPrice} USD</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
-                      <Col>Thuế</Col>
-                      <Col>{order.taxPrice} VNĐ</Col>
+                      <Col>Tax</Col>
+                      <Col>{order.taxPrice} USD</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
-                      <Col>Tổng tiền</Col>
-                      <Col>{order.totalPrice} VNĐ</Col>
+                      <Col>Total</Col>
+                      <Col>{order.totalPrice} USD</Col>
                     </Row>
                   </ListGroup.Item>
                   {loadingPay && <Loader />}

@@ -26,38 +26,38 @@ const LoginScreen = ({ location, history }) => {
   };
   return (
     <FormContainer>
-      <h1>Đăng nhập</h1>
+      <h1>Login</h1>
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="username">
-          <Form.Label>Tên đăng nhập</Form.Label>
+          <Form.Label>User Name</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Số điện thoại / biệt danh"
+            placeholder="Username"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
         <Form.Group controlId="password">
-          <Form.Label>Mật khẩu</Form.Label>
+          <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Nhập mật khẩu"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
         <Button type="submit" variant="primary">
-          Đăng nhập
+          Login
         </Button>
       </Form>
       <Row className="py-3">
         <Col>
-          Không có tài khoản?{" "}
+          Don't have an account?{" "}
           <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
-            Đăng kí
+            Sign up
           </Link>
         </Col>
       </Row>

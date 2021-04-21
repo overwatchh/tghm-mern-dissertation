@@ -32,7 +32,7 @@ const UserListScreen = ({ history }) => {
   }, [dispatch, history, successDelete, userInfo]);
   return (
     <>
-      <h1>Tất cả người dùng</h1>
+      <h1>User list</h1>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -41,10 +41,10 @@ const UserListScreen = ({ history }) => {
         <Table striped bordered hover responsive className="table-sm">
           <thead>
             <tr>
-              <th>Mã số</th>
-              <th>Tên</th>
-              <th>EMAIL</th>
-              <th>Quản trị</th>
+              <th>No.</th>
+              <th>Name</th>
+              <th>User name</th>
+              <th>Admin</th>
               <th></th>
             </tr>
           </thead>

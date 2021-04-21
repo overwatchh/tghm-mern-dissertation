@@ -24,7 +24,7 @@ const OrderListScreen = ({ history }) => {
   }, [dispatch, history, userInfo]);
   return (
     <>
-      <h1>Đơn hàng</h1>
+      <h1>Invoice</h1>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -33,12 +33,12 @@ const OrderListScreen = ({ history }) => {
         <Table striped bordered hover responsive className="table-sm">
           <thead>
             <tr>
-              <th>STT</th>
-              <th>Tên</th>
-              <th>Ngày mua</th>
-              <th>Tổng</th>
-              <th>Thanh toán</th>
-              <th>Giao hàng</th>
+              <th>No.</th>
+              <th>Customer name</th>
+              <th>Purchase date</th>
+              <th>Total</th>
+              <th>Paid date</th>
+              <th>Delivery</th>
               <th></th>
             </tr>
           </thead>
@@ -66,7 +66,7 @@ const OrderListScreen = ({ history }) => {
                 <td>
                   <LinkContainer to={`/order/${order._id}`}>
                     <Button variant="dark" className="btn-sm">
-                      Chi tiết
+                      Details
                     </Button>
                   </LinkContainer>
                 </td>

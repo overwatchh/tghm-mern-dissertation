@@ -19,14 +19,14 @@ const SearchBox = ({ history, className }) => {
         name="q"
         onChange={(e) => setKeyword(e.target.value)}
         className="mr-sm-2 ml-sm-5 mt-2"
-        placeholder="Tên sản phẩm..."
+        placeholder="Shop now"
       ></Form.Control>
       <Button
         type="submit"
         variant="outline-success"
         className="p-2 mt-2 ml-auto"
       >
-        Tìm kiếm
+        Search
       </Button>
     </Form>
   );

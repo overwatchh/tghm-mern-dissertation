@@ -53,18 +53,18 @@ const PlaceOrderScreen = ({ history }) => {
         <Col md={8}>
           <ListGroup variant="flush">
             <ListGroup.Item>
-              <h2>Giao hàng</h2>
+              <h2>Delivery</h2>
               <p>
-                <strong>Địa chỉ:</strong>
+                <strong>Address</strong>
                 {cart.shippingAddress.address} ,{cart.shippingAddress.city} ,
                 {cart.shippingAddress.postalCode} ,{cart.shippingAddress.city}.
               </p>
             </ListGroup.Item>
 
             <ListGroup.Item>
-              <h2>Sản phẩm</h2>
+              <h2>Products</h2>
               {cart.cartItems.length === 0 ? (
-                <Message>Giỏ hàng trống</Message>
+                <Message>Your cart is empty</Message>
               ) : (
                 <ListGroup variant="flush">
                   {cart.cartItems.map((item, index) => (
@@ -109,32 +109,32 @@ const PlaceOrderScreen = ({ history }) => {
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <h2>Tóm tắt đơn hàng</h2>
+                <h2>Invoice Summarize</h2>
               </ListGroup.Item>
 
               <ListGroup.Item>
                 <Row>
-                  <Col>Thành tiền</Col>
+                  <Col>Subtotal</Col>
                   <Col>{cart.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
 
               <ListGroup.Item>
                 <Row>
-                  <Col>Phí ship</Col>
+                  <Col>Shipping fee</Col>
                   <Col>{cart.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Thuế</Col>
+                  <Col>Tax</Col>
                   <Col>{cart.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Tổng tiền</Col>
-                  <Col>{cart.totalPrice} VNĐ</Col>
+                  <Col>Total</Col>
+                  <Col>{cart.totalPrice} USD</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
@@ -147,7 +147,7 @@ const PlaceOrderScreen = ({ history }) => {
                   disabled={cart.cartItems === 0}
                   onClick={placeOrderHandler}
                 >
-                  Đặt hàng
+                  Place order
                 </Button>
               </ListGroup.Item>
             </ListGroup>

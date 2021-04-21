@@ -71,11 +71,11 @@ const ProductListScreen = ({ history, match }) => {
     <>
       <Row className="align-items-center">
         <Col>
-          <h1>Quản lý sản phẩm</h1>
+          <h1>Products management</h1>
         </Col>
         <Col className="text-right">
           <Button className="my-3" onClick={createProductHandler}>
-            <i className="fas fa-plus"></i> Thêm
+            <i className="fas fa-plus"></i> Add
           </Button>
         </Col>
       </Row>
@@ -93,10 +93,10 @@ const ProductListScreen = ({ history, match }) => {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Tên</th>
-                <th>Giá</th>
-                <th>Loại hàng</th>
-                <th>Thương hiệu</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Brand</th>
               </tr>
             </thead>
             <tbody>
@@ -110,7 +110,7 @@ const ProductListScreen = ({ history, match }) => {
                     )}
                   </td>
                   <td>{product.name}</td>
-                  <td>{product.price} VNĐ</td>
+                  <td>{product.price}$</td>
                   <td>{product.category}</td>
                   <td>{product.brand}</td>
                   <td>

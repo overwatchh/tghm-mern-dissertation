@@ -34,57 +34,57 @@ const RegisterScreen = ({ location, history }) => {
   };
   return (
     <FormContainer>
-      <h1>Đăng kí</h1>
+      <h1>Registry your account</h1>
       {message && <Message variant="danger">{message}</Message>}
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="name">
-          <Form.Label>Tên</Form.Label>
+          <Form.Label>Name</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Nguyễn Văn A"
+            placeholder="Nguyen Dang Tuan"
             value={name}
             onChange={(e) => setName(e.target.value)}
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId="username">
-          <Form.Label>Tên đăng nhập</Form.Label>
+          <Form.Label>User name</Form.Label>
           <Form.Control
             type="text"
-            placeholder="09xxxxxxxx"
+            placeholder="User name"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
         <Form.Group controlId="password">
-          <Form.Label>Mật khẩu</Form.Label>
+          <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Nhập mật khẩu"
+            placeholder="Enter password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId="confirmPassword">
-          <Form.Label>Xác nhận mật khẩu</Form.Label>
+          <Form.Label>Confirm password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Nhập lại mật khẩu"
+            placeholder="Make sure you spell your password correctly"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
         <Button type="submit" variant="primary">
-          Đăng kí
+          Registry
         </Button>
       </Form>
       <Row className="py-3">
         <Col>
-          Đã có tài khoản?{" "}
+          Already have an account?{" "}
           <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
-            Đăng nhập{" "}
+            Log in{" "}
           </Link>
         </Col>
       </Row>

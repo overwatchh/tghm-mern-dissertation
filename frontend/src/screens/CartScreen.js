@@ -41,14 +41,14 @@ const CartScreen = ({ match, location, history }) => {
     <Row>
       <Col md={8}>
         <Link className="btn btn-light my-3" to="/">
-          Quay lại
+          Go back
         </Link>
-        <h1>Giỏ hàng</h1>
+        <h1>Cart</h1>
         {cartItems.length === 0 ? (
           <Message>
-            Giỏ hàng trống.
+            Your cart is empty!
             <Link to="/">
-              <strong>Quay lại! </strong>
+              <strong>Shop now! </strong>
             </Link>
           </Message>
         ) : (
@@ -106,7 +106,7 @@ const CartScreen = ({ match, location, history }) => {
         <Card>
           <ListGroup variant="flush">
             <ListGroup.Item>
-              <h2>Tổng tiền</h2>
+              <h2>Total</h2>
 
               <CurrencyFormat
                 value={cartTotalPrice}
@@ -126,7 +126,7 @@ const CartScreen = ({ match, location, history }) => {
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}
               >
-                Tiếp tục
+                Continue
               </Button>
             </ListGroup.Item>
           </ListGroup>

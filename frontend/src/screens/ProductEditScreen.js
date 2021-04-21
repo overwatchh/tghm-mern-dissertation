@@ -86,10 +86,10 @@ const ProductEditScreen = ({ match, history }) => {
   return (
     <>
       <Link to="/admin/productlist" className="btn btn-light my-3">
-        Quay lại
+        Go back
       </Link>
       <FormContainer>
-        <h1>Chỉnh sửa sản phẩm</h1>
+        <h1>Edit product</h1>
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
         {loading ? (
@@ -99,36 +99,36 @@ const ProductEditScreen = ({ match, history }) => {
         ) : (
           <Form onSubmit={submitHandler}>
             <Form.Group controlId="name">
-              <Form.Label>Tên sản phẩm</Form.Label>
+              <Form.Label>Product's name</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Nhâp tên sản phẩm"
+                placeholder="Iphone X plus"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               ></Form.Control>
             </Form.Group>
             <Form.Group controlId="price">
-              <Form.Label>Giá</Form.Label>
+              <Form.Label>Price</Form.Label>
               <Form.Control
                 type="number"
-                placeholder="Nhập giá sản phẩm"
+                placeholder="1.000$"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
             <Form.Group controlId="image">
-              <Form.Label>Ảnh</Form.Label>
+              <Form.Label>Image</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Nhập đường dẫn ảnh"
+                placeholder="Image "
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
               ></Form.Control>
 
               <Form.File
                 id="image-file"
-                label="Chọn ảnh trong máy"
+                label="Choose file"
                 custom
                 onChange={uploadFileHandler}
               ></Form.File>
@@ -136,46 +136,46 @@ const ProductEditScreen = ({ match, history }) => {
             </Form.Group>
 
             <Form.Group controlId="brand">
-              <Form.Label>Thương hiệu</Form.Label>
+              <Form.Label>Brand</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Nhập thương hiệu"
+                placeholder="Product's brand"
                 value={brand}
                 onChange={(e) => setBrand(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
             <Form.Group controlId="countInStock">
-              <Form.Label>Số lượng tồn kho</Form.Label>
+              <Form.Label>In stock</Form.Label>
               <Form.Control
                 type="number"
-                placeholder="Số lượng tồn kho"
+                placeholder="Number of product in stock"
                 value={countInStock}
                 onChange={(e) => setCountInStock(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
             <Form.Group controlId="category">
-              <Form.Label>Danh mục</Form.Label>
+              <Form.Label>Category</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Tên danh mục"
+                placeholder="Category name"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
             <Form.Group controlId="description">
-              <Form.Label>Mô tả</Form.Label>
+              <Form.Label>Description</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Mô tả sản phẩm"
+                placeholder="Description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></Form.Control>
             </Form.Group>
             <Button type="submit" variant="primary">
-              Cập nhật
+              Update
             </Button>
           </Form>
         )}

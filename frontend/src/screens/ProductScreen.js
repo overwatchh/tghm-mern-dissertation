@@ -57,7 +57,7 @@ const ProductScreen = ({ history, match }) => {
   return (
     <>
       <Link className="btn btn-light my-3" to="/">
-        Quay lại
+        Go back
       </Link>
       {loading ? (
         <Loader />
@@ -78,11 +78,13 @@ const ProductScreen = ({ history, match }) => {
                 <ListGroup.Item>
                   <Rating
                     value={product.rating}
-                    text={`${product.numReviews} đánh giá`}
+                    text={`${product.numReviews} Reviews`}
                   />
                 </ListGroup.Item>
-                <ListGroup.Item>Giá: {product.price} VNĐ</ListGroup.Item>
-                <ListGroup.Item>Mô tả: {product.description}</ListGroup.Item>
+                <ListGroup.Item>Price: {product.price}$</ListGroup.Item>
+                <ListGroup.Item>
+                  Description: {product.description}
+                </ListGroup.Item>
               </ListGroup>
             </Col>
             <Col md={3}>
@@ -90,15 +92,15 @@ const ProductScreen = ({ history, match }) => {
                 <ListGroup>
                   <ListGroup.Item>
                     <Row>
-                      <Col>Giá:</Col>
+                      <Col>Price:</Col>
                       <Col>
-                        <strong>{product.price} VNĐ</strong>
+                        <strong>{product.price}$</strong>
                       </Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
-                      <Col>Trạng thái:</Col>
+                      <Col>Status:</Col>
                       <Col>
                         {product.countInStock > 0 ? "In Stock" : "Out of Stock"}
                       </Col>
@@ -107,7 +109,7 @@ const ProductScreen = ({ history, match }) => {
                   {product.countInStock > 0 && (
                     <ListGroup.Item>
                       <Row className="d-flex align-items-center">
-                        <Col>Số lượng</Col>
+                        <Col>Quantity</Col>
                         <Col>
                           <Form.Control
                             as="select"
@@ -133,7 +135,7 @@ const ProductScreen = ({ history, match }) => {
                       disabled={product.countInStock === 0}
                       onClick={addToCartHandler}
                     >
-                      Thêm vào giỏ
+                      Add to cart
                     </Button>
                   </ListGroup.Item>
                 </ListGroup>
@@ -142,10 +144,8 @@ const ProductScreen = ({ history, match }) => {
           </Row>
           <Row>
             <Col md={6}>
-              <h2>Đánh giá</h2>
-              {product.reviews.length === 0 && (
-                <Message>Chưa được đánh giá</Message>
-              )}
+              <h2>Reviews</h2>
+              {product.reviews.length === 0 && <Message>No reviews</Message>}
               <ListGroup variant="flush">
                 {product.reviews.map((review) => (
                   <ListGroup.Item id={review._id}>
@@ -156,25 +156,25 @@ const ProductScreen = ({ history, match }) => {
                   </ListGroup.Item>
                 ))}
                 <ListGroup.Item>
-                  <h2>Viết đánh giá</h2>
+                  <h2>Our pleasure to get your feedback</h2>
                   {errorProductReview && (
                     <Message variant="danger">{errorProductReview}</Message>
                   )}
                   {userInfo ? (
                     <Form onSubmit={submitHandler}>
                       <Form.Group controlId="rating">
-                        <Form.Label>Đánh giá</Form.Label>
+                        <Form.Label>Review</Form.Label>
                         <Form.Control
                           as="select"
                           value={rating}
                           onChange={(e) => setRating(e.target.value)}
                         >
-                          <option value="">Chọn</option>
-                          <option value="1">1 - Tệ</option>
-                          <option value="2">2 - Trung bình</option>
-                          <option value="3">3 - Tốt</option>
-                          <option value="4">4 - Cực tốt</option>
-                          <option value="5">5 - Tuyệt vời</option>
+                          <option value="">Choose</option>
+                          <option value="1">1 - Bad</option>
+                          <option value="2">2 - Normal</option>
+                          <option value="3">3 - Good</option>
+                          <option value="4">4 - Excellent</option>
+                          <option value="5">5 - Awesome</option>
                         </Form.Control>
                       </Form.Group>
 
@@ -191,14 +191,13 @@ const ProductScreen = ({ history, match }) => {
                           type="submit"
                           variant="primary"
                         >
-                          Gửi
+                          Submit
                         </Button>
                       </Form.Group>
                     </Form>
                   ) : (
                     <Message>
-                      Vui lòng <Link to="/login">đăng nhập</Link> để viết đánh
-                      giá{" "}
+                      Please <Link to="/login">log in</Link> to write reviews
                     </Message>
                   )}
                 </ListGroup.Item>

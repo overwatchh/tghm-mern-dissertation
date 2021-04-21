@@ -71,10 +71,10 @@ const Product = ({ product }) => {
           onClick={addToCartHandler}
         >
           {isProductInCart && qty === qtyInCart
-            ? "Trong giỏ"
+            ? "In cart"
             : isProductInCart && qty !== qtyInCart
-            ? "Xác  nhận"
-            : "Thêm vào giỏ"}
+            ? "Confirm"
+            : "Add to cart"}
           <Badge className="ml-2" pill variant="light">
             {isProductInCart ? qtyInCart : ""}
           </Badge>

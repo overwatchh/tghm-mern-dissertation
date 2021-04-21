@@ -62,23 +62,23 @@ const ProfileScreen = ({ history }) => {
   return (
     <Row>
       <Col md={3}>
-        <h1>Hồ sơ</h1>
+        <h1>Profile</h1>
         {message && <Message variant="danger">{message}</Message>}
         {error && <Message variant="danger">{error}</Message>}
         {success && <Message variant="success">Đã lưu</Message>}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
-            <Form.Label>Tên</Form.Label>
+            <Form.Label>Name</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Nguyyễn Văn A"
+              placeholder="Nguyen Dang Tuan"
               value={name}
               onChange={(e) => setName(e.target.value)}
             ></Form.Control>
           </Form.Group>
           <Form.Group controlId="username">
-            <Form.Label>Tên đăng nhập</Form.Label>
+            <Form.Label>User name</Form.Label>
             <Form.Control
               type="text"
               placeholder="nguyenvana"
@@ -88,30 +88,30 @@ const ProfileScreen = ({ history }) => {
           </Form.Group>
 
           <Form.Group controlId="password">
-            <Form.Label>Mật khẩu</Form.Label>
+            <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Nhập mật khẩu"
+              placeholder="Your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
           <Form.Group controlId="confirmPassword">
-            <Form.Label>Xác nhận mật khẩu</Form.Label>
+            <Form.Label>Confirm password</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Nhập lại mật khẩu"
+              placeholder="Make sure you spell your password right"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
           <Button type="submit" variant="primary">
-            Cập nhật
+            Update
           </Button>
         </Form>
       </Col>
       <Col md={9}>
-        <h2>Hoá đơn của tôi</h2>
+        <h2>My invoice</h2>
         {loadingOrders ? (
           <Loader />
         ) : errorOrders ? (
@@ -120,11 +120,11 @@ const ProfileScreen = ({ history }) => {
           <Table striped bordered hover responsive className="table-sm">
             <thead>
               <tr>
-                <th>STT</th>
-                <th>Ngày tạo</th>
-                <th>Tổng</th>
-                <th>Thanh toán</th>
-                <th>Giao hàng</th>
+                <th>No.</th>
+                <th>Created date</th>
+                <th>Total</th>
+                <th>Paid</th>
+                <th>Dilivered</th>
                 <th></th>
               </tr>
             </thead>
@@ -152,7 +152,7 @@ const ProfileScreen = ({ history }) => {
                   <td>
                     <LinkContainer to={`/order/${order._id}`}>
                       <Button className="btn-sm" variant="dark">
-                        Chi tiết
+                        Details
                       </Button>
                     </LinkContainer>
                   </td>

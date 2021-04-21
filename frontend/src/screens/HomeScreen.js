@@ -22,15 +22,15 @@ const HomeScreen = ({ match }) => {
 
   return (
     <>
-      <Meta title="Acazia Review" />
+      <Meta title="Nguyen Dang Tuan's thesis" />
       {!keyword ? (
         <ProductCarousel />
       ) : (
         <Link to="/" className="btn btn-light">
-          Quay lại
+          Go back
         </Link>
       )}
-      <h1>Sản phẩm </h1>
+      <h1>Products </h1>
       {loading ? (
         <Loader />
       ) : error ? (
