@@ -44,6 +44,7 @@ const Product = ({ product }) => {
             displayType="text"
             thousandSeparator={true}
           />
+          $
         </Card.Text>
         <Card.Text as="div" className="d-flex">
           <Form.Control
