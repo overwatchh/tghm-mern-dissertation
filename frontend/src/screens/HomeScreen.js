@@ -22,7 +22,7 @@ const HomeScreen = ({ match }) => {
 
   return (
     <>
-      <Meta title="Nguyen Dang Tuan's thesis" />
+      <Meta title="Nguyen Dang Tuan" />
       {!keyword ? (
         <ProductCarousel />
       ) : (
