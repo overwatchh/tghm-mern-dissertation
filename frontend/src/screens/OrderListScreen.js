@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Meta from "react-helmet";
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,6 +25,7 @@ const OrderListScreen = ({ history }) => {
   }, [dispatch, history, userInfo]);
   return (
     <>
+      <Meta title="Manage orders" />
       <h1>Invoice</h1>
       {loading ? (
         <Loader />

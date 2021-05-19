@@ -22,7 +22,7 @@ const HomeScreen = ({ match }) => {
 
   return (
     <>
-      <Meta title="Nguyen Dang Tuan" />
+      <Meta title="An eCommerce app using MERN stack" />
       {!keyword ? (
         <ProductCarousel />
       ) : (

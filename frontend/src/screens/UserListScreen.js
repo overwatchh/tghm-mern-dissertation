@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Meta from "react-helmet";
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,7 +19,7 @@ const UserListScreen = ({ history }) => {
   const { success: successDelete } = userDelete;
 
   const deleteHandler = (userId) => {
-    if (window.confirm("Chắc chắn muốn xóa?")) {
+    if (window.confirm("Are you sure?")) {
       dispatch(deleteUser(userId));
     }
   };
@@ -32,6 +33,7 @@ const UserListScreen = ({ history }) => {
   }, [dispatch, history, successDelete, userInfo]);
   return (
     <>
+      <Meta title="Manage users" />
       <h1>User list</h1>
       {loading ? (
         <Loader />

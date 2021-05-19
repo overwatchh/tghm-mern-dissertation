@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import { Container } from "react-bootstrap";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
+import ProductAddScreen from "./screens/ProductAddScreen";
 import ProductListScreen from "./screens/ProductListScreen";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import CartScreen from "./screens/CartScreen";
@@ -42,6 +43,7 @@ function App() {
             component={ProductListScreen}
             exact
           />
+          <Route path="/admin/product/new" component={ProductAddScreen} exact />
           <Route path="/admin/product/:id/edit" component={ProductEditScreen} />
           <Route path="/admin/userlist" component={UserListScreen} />
           <Route path="/admin/user/:id/edit" component={UserEditScreen} />

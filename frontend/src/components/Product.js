@@ -39,12 +39,12 @@ const Product = ({ product }) => {
           <Rating value={product.rating} text={product.numReviews} />
         </Card.Text>
         <Card.Text as="h3">
+          <span>$</span>
           <CurrencyFormat
             value={product.price}
             displayType="text"
             thousandSeparator={true}
           />
-          $
         </Card.Text>
         <Card.Text as="div" className="d-flex">
           <Form.Control

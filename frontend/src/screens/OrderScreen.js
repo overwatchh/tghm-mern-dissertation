@@ -89,7 +89,7 @@ const OrderScreen = ({ match, history }) => {
                       Delivered at {order.deliveredAt}
                     </Message>
                   ) : (
-                    <Message variant="danger">Chưa giao hàng</Message>
+                    <Message variant="danger">Not delivered</Message>
                   )}
                 </ListGroup.Item>
                 <ListGroup.Item>
@@ -189,7 +189,7 @@ const OrderScreen = ({ match, history }) => {
                         }`}
                         onClick={successPaymentHandler}
                       >
-                        Thanh toán{" "}
+                        paid{" "}
                         {order.isPaid ? (
                           <i class="fas fa-check-circle"></i>
                         ) : (
@@ -208,7 +208,7 @@ const OrderScreen = ({ match, history }) => {
                         }`}
                         onClick={deliverHandler}
                       >
-                        Giao hàng{" "}
+                        Delivered{" "}
                         {order.isDelivered ? (
                           <i class="fas fa-check-circle"></i>
                         ) : (
