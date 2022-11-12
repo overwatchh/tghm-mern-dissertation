@@ -2,6 +2,9 @@
   "name": "tghm",
   "version": "1.0.0",
   "description": "My dissertation which i am going to build a web app using modern javascript in web development, MERN stack.",
+  "engines": {
+    "node": "18.x"
+  },
   "main": "server.js",
   "type": "module",
   "scripts": {
