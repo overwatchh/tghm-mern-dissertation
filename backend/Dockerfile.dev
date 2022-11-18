@@ -9,9 +9,6 @@ COPY package*.json ./
 
 # Install Dependencies
 RUN npm install
-#import fake data
-# RUN npm run data:import
-
 # Copy rest of the code to container
 COPY . .
 
