@@ -1,5 +1,6 @@
-const path = require("path");
-const webpack = require("webpack");
+import path from "path";
+import webpack from "webpack";
+const __dirname = path.resolve();
 
 const environment = process.env.ENVIRONMENT;
 
@@ -32,12 +33,13 @@ if (environment === "test") {
   };
 }
 
-module.exports = {
+export default {
   entry: "./server.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "api.bundle.js",
+    filename: "api.bundle.cjs",
   },
   target: "node",
   plugins: [new webpack.DefinePlugin(ENVIRONMENT_VARIABLES)],
+  mode: "production",
 };
