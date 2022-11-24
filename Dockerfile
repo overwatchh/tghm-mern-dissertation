@@ -15,6 +15,7 @@ FROM node:14-slim
 WORKDIR /root/
 COPY --from=frontend-build /usr/src/frontend/build ./frontend/build
 COPY --from=backend-build /usr/src/backend/dist .
+RUN mkdir uploads
 
 EXPOSE 5000
 
